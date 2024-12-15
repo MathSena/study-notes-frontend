@@ -1,0 +1,30 @@
+<div class="max-w-2xl mx-auto p-8 bg-white rounded-xl shadow-lg">
+  <!-- Campo para Tópico -->
+  <div class="mb-6">
+    <label for="topic" class="block text-lg font-semibold text-gray-800">Tópico</label>
+    <input id="topic" type="text" [(ngModel)]="topic" placeholder="Digite o tópico"
+      class="w-full px-5 py-3 mt-2 text-lg border border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-500 focus:border-blue-500 transition ease-in-out duration-300" />
+  </div>
+
+  <!-- Botão de enviar -->
+  <button (click)="generateNotes()" [disabled]="loading"
+    class="w-full py-3 px-5 bg-blue-500 text-white rounded-lg font-semibold text-lg hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-400 disabled:bg-gray-300 transition ease-in-out duration-300">
+    {{ loading ? 'Carregando...' : 'Gerar Notas' }}
+  </button>
+
+  <!-- Mensagem de erro -->
+  <div *ngIf="errorMessage" class="mt-4 text-red-500 text-center text-lg">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Se carregando -->
+  <div *ngIf="loading" class="mt-4 text-center text-gray-500 text-lg">Carregando...</div>
+
+  <!-- Exibir tópicos retornados pelo backend -->
+  <div *ngIf="studyNotes.length > 0" class="mt-8">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Tópicos Gerados:</h2>
+    <ul class="list-disc pl-6 space-y-2">
+      <li *ngFor="let note of studyNotes" class="text-gray-700 text-lg">{{ note }}</li>
+    </ul>
+  </div>
+</div>
