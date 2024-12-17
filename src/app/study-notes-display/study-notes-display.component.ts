@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms'; // FormsModule para Two-Way Binding
-import { CommonModule } from '@angular/common'; // Necessário para *ngIf e *ngFor
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { StudyNotesService } from '../study-notes.service';
 
 @Component({
@@ -17,6 +17,10 @@ export class StudyNotesDisplayComponent {
   errorMessage: string = '';
 
   constructor(private studyNotesService: StudyNotesService) {}
+
+  isTopicValid(): boolean {
+    return this.topic.trim().length > 0;
+  }
 
   generateNotes() {
     this.loading = true;
